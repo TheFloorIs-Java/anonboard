@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GeneraService {
@@ -25,7 +26,11 @@ public class GeneraService {
     public List<Genera> getAllGenera(){
         return this.generaRepo.findAll();
     }
-    public Genera getGeneraByName(String genera){
-        return this.generaRepo.findGeneraByGenera(genera).get();
+    public Genera getGeneraByName(String generaName){
+        Optional<Genera> optional = this.generaRepo.findGeneraByGenera(generaName);
+        if(optional.isPresent()){
+            return optional.get();
+        }
+        return null;
     }
 }

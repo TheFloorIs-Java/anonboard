@@ -16,11 +16,11 @@ class GeneraServiceTest {
     @Test
     void addGenera(){
         Genera newGenera = new Genera();
-        newGenera.setGenera("Test");
+        newGenera.setGenera("NameTest");
         System.out.println(generaRepo.save(newGenera));
     }
     @Test
     void getGenera(){
-        System.out.println(generaRepo.findGeneraByGenera("Test").get());
+        System.out.println(generaRepo.findGeneraByGenera("NameTest").get());
     }
 }
