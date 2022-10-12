@@ -1,10 +1,12 @@
 package com.messageboard.messageApp.Service;
 
+import com.messageboard.messageApp.Model.Post;
 import com.messageboard.messageApp.Model.Reply;
 import com.messageboard.messageApp.Repository.ReplyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,14 +25,20 @@ public class ReplyService {
 
     //receive a reply from client side and add the reply to the database
     public Reply addReply(Reply reply){
+        Date date = new Date();
+        reply.setDate(date); //without saving the date locally we would get an error.
         return this.replyRepo.save(reply);
+
     }
     //allow client to view all of the replies that are stored in the database
     //for a particular post
-    public List<Reply> getAllReplies(){
+    public List<Reply>  getAllReplyByParticularPost(int postId){
+        Post post = new Post();
+        post.setPost_id(postId);
         //find all instances of this reply and return them from the database
-        return this.replyRepo.findAll();
+        return this.replyRepo.findAllReplyByPost(post);
     }
+
 
 }
 

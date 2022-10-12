@@ -21,6 +21,7 @@ public class GeneraService {
     //get all genera
     //get genera by genera return t/f dependent on if already exists
     public Genera addGenera(Genera genera){
+        genera.setGenera(genera.getGenera().toLowerCase());
         return this.generaRepo.save(genera);
     }
     public List<Genera> getAllGenera(){

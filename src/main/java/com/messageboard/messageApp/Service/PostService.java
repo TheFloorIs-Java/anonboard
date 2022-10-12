@@ -5,6 +5,7 @@ import com.messageboard.messageApp.Repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ public class PostService {
     //getAllPost
     //getParticularPost
     public Post addPost(Post post){
+        Date date = new Date();
+        post.setDate(date);
        return this.postRepo.save(post);
     }
     public List<Post> getAllPosts(){

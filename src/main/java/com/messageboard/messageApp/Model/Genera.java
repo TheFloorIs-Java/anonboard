@@ -10,12 +10,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "genera")
+@Table(name = "genera", uniqueConstraints = @UniqueConstraint(name = "genera_unique", columnNames = "genera")
+)
 public class Genera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int genera_id;
-    @Column
+    @Column(nullable = false)
     String genera;
 }
 
