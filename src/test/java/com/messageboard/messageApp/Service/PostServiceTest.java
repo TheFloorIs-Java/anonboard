@@ -21,6 +21,12 @@ class PostServiceTest {
         post.setTitle("First Post Test");
         postService.addPost(post);
     }
+    @Test
+    void findPostByPostId(){
+        postService.getPostById(1);
+        System.out.println(postService.getPostById(1));
+
+    }
 
 
 }

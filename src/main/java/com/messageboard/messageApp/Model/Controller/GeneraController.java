@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController //from spring MVC marks class as a rest controller
+@RestController
+@CrossOrigin
+//from spring MVC marks class as a rest controller
 //methods in this class can map the URL request, you can have a request map to a particular method.
 public class GeneraController {
     @Autowired
@@ -22,9 +24,9 @@ public class GeneraController {
     public List<Genera> getAllGenera(){
         return generaService.getAllGenera();
     }
-    @GetMapping("/genera/{generaName}")
-    public Genera getGeneraByName(@PathVariable String generaName){
-        return generaService.getGeneraByName(generaName);
+    @GetMapping("/genera")
+    public Genera getGeneraByName(@RequestBody Genera genera){
+        return generaService.getGeneraByName(genera.getGenera());
     }
 
 }

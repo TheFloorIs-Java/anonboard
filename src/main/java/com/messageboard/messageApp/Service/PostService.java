@@ -1,5 +1,6 @@
 package com.messageboard.messageApp.Service;
 
+import com.messageboard.messageApp.Model.Genera;
 import com.messageboard.messageApp.Model.Post;
 import com.messageboard.messageApp.Repository.PostRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,18 @@ public class PostService {
     public List<Post> getAllPosts(){
         return this.postRepo.findAll();
     }
-    public Post getParticularPost(String postTitle){
+    public List<Post> getParticularPost(int generaId){
+        Genera genera = new Genera();
+        genera.setGenera_id(generaId);
         //due to the possibility of a post not existing, use optional
-        Optional<Post> optional = this.postRepo.findPostByTitle(postTitle); //created .getPArticularPost method in postRepo
+         return this.postRepo.findPostByGenera(genera); //created .getPArticularPost method in postRepo
         //check if the post actually is present in the table and if it is return that object of post
-        if (optional.isPresent()){
-            return optional.get();
+
+    }
+    public Post getPostById(int id){
+        if(this.postRepo.findByPostId(id).isPresent()){
+            return this.postRepo.findById(id).get();
         }
-        //if it is not present, then return null for all values of Post
-        return null;
+            return null;
     }
 }
